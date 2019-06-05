@@ -35,11 +35,12 @@ const cdn = {
         ]
     }
 }
-
+console.log('publicPath='+process.env.BASE_URL)
 module.exports = {
     // 项目部署的基础路径 默认/
     // 放在子目录时使用./或者加你的域名
     publicPath: process.env.BASE_URL,
+// publicPath: 'defaultSite/js/a/zndxzh',
     configureWebpack: config => {
         if (isProduction) {
             // externals里的模块不打包
@@ -134,6 +135,6 @@ module.exports = {
         https: false,
         hotOnly: false,
         // 设置代理，用来解决本地开发跨域问题，如果设置了代理，那你本地开发环境的axios的baseUrl要写为 '' ，即空字符串
-        proxy: 'https://easy-mock.com/' // 设置代理
+        proxy: 'http://221.179.8.170:8080' // 设置代理
     }
 }

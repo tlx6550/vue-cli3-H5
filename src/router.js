@@ -34,7 +34,7 @@ const router = new Router({
                 import(/* webpackChunkName: "login" */ './views/login.vue'),
             meta: {
                 auth: false,
-                keepAlive: true
+                keepAlive: false
             }
         },
         {

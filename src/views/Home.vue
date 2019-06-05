@@ -9,14 +9,16 @@
 </div>
         <img alt="Vue logo" src="../assets/logo.png">
         <HelloWorld msg="Welcome to Your Vue.js App"/>
+         <img class="demo-img" alt="Vue logo" src="../assets/MM7.2.2_详情页分享_弹窗1.jpg">
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue';
-import { getIndex } from 'api/index';
+import webMMAPi from 'api/index';
 import { Toast } from 'mint-ui'
+import { get, post } from '@/axios/http.js'
 export default {
     name: 'home',
     components: {
@@ -34,6 +36,7 @@ export default {
         }
     },
     mounted() {
+    	this.test()
     },
     methods: {
         async test2333() {
@@ -47,7 +50,20 @@ export default {
                 });
                 console.log('err', err);
             }
+        },
+       test (){
+          webMMAPi.initState({
+        		requestid: 'AllFreeFlag'
+        }).then((res)=>{
+        	console.log(res)
+        })
         }
     }
 };
 </script>
+<style rel="stylesheet/scss" lang="scss" scoped>
+	.demo-img{
+		height:1rem;
+		width:.5rem;
+	}
+</style>

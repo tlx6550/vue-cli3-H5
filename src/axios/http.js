@@ -11,9 +11,9 @@ axios.defaults.headers.post['Content-Type'] =
 axios.interceptors.request.use(
     config => {
         // 可在此设置要发送的token
-        let token = store.getters['login/token'];
-        token && (config.headers.token = token)
-        // Indicator.open('数据加载中')
+//      let token = store.getters['login/token'];
+//      token && (config.headers.token = token)
+        Indicator.open('数据加载中')
         return config
     },
     error => {
@@ -26,16 +26,17 @@ axios.interceptors.response.use(
         // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据
         // 否则的话抛出错误 结合自身业务和后台返回的接口状态约定写respone拦截器
         Indicator.close()
-        if (response.status === 200 && response.data.code === 0) {
-            return Promise.resolve(response)
-        } else {
-            Toast({
-                message: response.data.msg,
-                position: 'middle',
-                duration: 2000
-            });
-            return Promise.reject(response)
-        }
+//      if (response.status === 200 && response.statusText === 'ok') {
+//          return Promise.resolve(response)
+//      } else {
+//          Toast({
+//              message: response.data.msg,
+//              position: 'middle',
+//              duration: 2000
+//          });
+//          return Promise.reject(response)
+//      }
+		 return Promise.resolve(response)
     },
     error => {
         Indicator.close()

@@ -1,10 +1,11 @@
 <template>
     <div id="app">
         <transition :name="transitionName">
-            <keep-alive>
-                <router-view v-if="$route.meta.keepAlive" class="router"></router-view>
+        	<!--// 是否缓存该组件-->
+            <keep-alive v-if="$route.meta.keepAlive">
+                <router-view class="router"></router-view>
             </keep-alive>
-            <router-view v-if="!$route.meta.keepAlive" class="router"></router-view>
+             <router-view v-if="!$route.meta.keepAlive" class="router"></router-view>
         </transition>
     </div>
 </template>
@@ -16,7 +17,10 @@ export default {
         transitionName() {
             return this.$store.state.direction
         }
-    }
+    },
+    mounted() {
+    	console.log(this.$route)
+    },
 };
 </script>
 <style lang="scss">

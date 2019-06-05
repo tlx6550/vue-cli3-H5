@@ -5,7 +5,9 @@ function getIndex (params) {
 function login(params) {
     return post('/mock/5cb48c7ed491cd741c54456f/base/login', params)
 }
-export {
-    getIndex,
-    login
+
+export default class webMMAPi {
+  static initState = (params) => {
+   return get('/s.do', params)
+ }
 }

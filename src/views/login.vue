@@ -20,6 +20,7 @@
 
 <script>
 // @ is an alias to /src
+import webMMAPi from 'api/index';
 import {
     mapActions
 } from 'vuex';
@@ -36,7 +37,9 @@ export default {
     },
     components: {},
     created() {},
-    mounted() {},
+    mounted() {
+    	this.test()
+    },
     methods: {
         ...mapActions('login', ['login']),
         loginBtn() {
@@ -54,6 +57,14 @@ export default {
                     $route: this.$route
                 });
             }
+        },
+        test (){
+          webMMAPi.initState({
+        		requestid: 'AllFreeFlag'
+        }).then((res)=>{
+        	console.log('login')
+        	console.log(res)
+        })
         }
     }
 };
