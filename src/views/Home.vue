@@ -36,7 +36,7 @@ export default {
         }
     },
     mounted() {
-    	this.test()
+    	this.java()
     },
     methods: {
         async test2333() {
@@ -56,6 +56,30 @@ export default {
         		requestid: 'AllFreeFlag'
         }).then((res)=>{
         	console.log(res)
+        })
+        },
+        java (){
+          webMMAPi.testJava2Json({
+        		requestid: 'zndxzh_ajax',
+        		channelid:'5410453499',
+        		cid:'300002575008',
+        		gid:'300002575008'
+        }).then((res)=>{
+        	var a = res.split(',')
+        	var json = {}
+        	a.forEach(function(item){
+        		if(item.indexOf('=')>-1){
+        			var b = item.split('=')
+        			var obj = {}
+        			var key = b[0].replace(/\"/g, ""); // 去除双引号
+        			var val = b[1].replace(/\"/g, "");
+        			key = key.replace(/(^\s*)|(\s*$)/g, ""); // 去除左右空格
+        			val = val.replace(/(^\s*)|(\s*$)/g, "");
+        			obj[key] = val
+					json[key] = val
+        		}
+        	})
+        	console.log(json)
         })
         }
     }

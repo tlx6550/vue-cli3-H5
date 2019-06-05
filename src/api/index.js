@@ -10,4 +10,7 @@ export default class webMMAPi {
   static initState = (params) => {
    return get('/s.do', params)
  }
+  static testJava2Json = (params) => {
+   return get('/s.do', params)
+ }
 }
