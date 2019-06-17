@@ -41,6 +41,7 @@ module.exports = {
     // 放在子目录时使用./或者加你的域名
     publicPath: process.env.BASE_URL,
 // publicPath: 'defaultSite/js/a/zndxzh',
+	assetsDir:'assetsMulu',
     configureWebpack: config => {
         if (isProduction) {
             // externals里的模块不打包

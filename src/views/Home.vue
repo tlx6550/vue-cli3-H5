@@ -5,7 +5,7 @@
             <router-link to="/about">About</router-link>
         </div>
 <div @click='test2333()'>
-    233333
+   {{username}}
 </div>
         <img alt="Vue logo" src="../assets/logo.png">
         <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -17,12 +17,18 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue';
 import webMMAPi from 'api/index';
-import { Toast } from 'mint-ui'
-import { get, post } from '@/axios/http.js'
+import { Toast } from 'mint-ui';
+import { get, post } from '@/axios/http.js';
 export default {
     name: 'home',
     components: {
         HelloWorld
+    },
+    data() {
+        return {
+            username: '9999',
+            password: ''
+        };
     },
     async created() {
         try {
@@ -36,7 +42,7 @@ export default {
         }
     },
     mounted() {
-    	this.java()
+        this.java();
     },
     methods: {
         async test2333() {
@@ -51,43 +57,47 @@ export default {
                 console.log('err', err);
             }
         },
-       test (){
-          webMMAPi.initState({
-        		requestid: 'AllFreeFlag'
-        }).then((res)=>{
-        	console.log(res)
-        })
+        test() {
+            webMMAPi
+                .initState({
+                    requestid: 'AllFreeFlag'
+                })
+                .then(res => {
+                    console.log(res);
+                });
         },
-        java (){
-          webMMAPi.testJava2Json({
-        		requestid: 'zndxzh_ajax',
-        		channelid:'5410453499',
-        		cid:'300002575008',
-        		gid:'300002575008'
-        }).then((res)=>{
-        	var a = res.split(',')
-        	var json = {}
-        	a.forEach(function(item){
-        		if(item.indexOf('=')>-1){
-        			var b = item.split('=')
-        			var obj = {}
-        			var key = b[0].replace(/\"/g, ""); // 去除双引号
-        			var val = b[1].replace(/\"/g, "");
-        			key = key.replace(/(^\s*)|(\s*$)/g, ""); // 去除左右空格
-        			val = val.replace(/(^\s*)|(\s*$)/g, "");
-        			obj[key] = val
-					json[key] = val
-        		}
-        	})
-        	console.log(json)
-        })
+        java() {
+            webMMAPi
+                .testJava2Json({
+                    requestid: 'zndxzh_ajax',
+                    channelid: '5410453499',
+                    cid: '300002575008',
+                    gid: '300002575008'
+                })
+                .then(res => {
+                    var a = res.split(',');
+                    var json = {};
+                    a.forEach(function(item) {
+                        if (item.indexOf('=') > -1) {
+                            var b = item.split('=');
+                            var obj = {};
+                            var key = b[0].replace(/\"/g, ''); // 去除双引号
+                            var val = b[1].replace(/\"/g, '');
+                            key = key.replace(/(^\s*)|(\s*$)/g, ''); // 去除左右空格
+                            val = val.replace(/(^\s*)|(\s*$)/g, '');
+                            obj[key] = val;
+                            json[key] = val;
+                        }
+                    });
+                    console.log(json);
+                });
         }
     }
 };
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
-	.demo-img{
-		height:1rem;
-		width:.5rem;
-	}
+.demo-img {
+  height: 1rem;
+  width: 0.5rem;
+}
 </style>
