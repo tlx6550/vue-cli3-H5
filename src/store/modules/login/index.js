@@ -1,5 +1,5 @@
 import * as type from './mutations_types'
-import { login } from 'api/index'
+import webMMAPi from 'api/index'
 import { Toast } from 'mint-ui';
 export default {
     namespaced: true,
@@ -21,7 +21,7 @@ export default {
     actions: {
         async login(state, data) {
             try {
-                let res = await login({
+                let res = await webMMAPi.login({
                     username: data.username,
                     password: data.password
                 })
