@@ -19,56 +19,55 @@
 </template>
 
 <script>
-	// @ is an alias to /src
-	import webMMAPi from 'api/index';
-	import {
-		mapActions
-	} from 'vuex';
-	import {
-		Toast
-	} from 'mint-ui';
-	export default {
-		name: 'login',
-		data() {
-			return {
-				username: '',
-				password: ''
-			};
-		},
-		components: {},
-		created() {},
-		mounted() {
-			this.test()
-		},
-		methods: {
-			...mapActions('login', ['login']),
-			loginBtn() {
-				if(this.username === '' || this.password === '') {
-					Toast({
-						message: '请输入账号或密码',
-						position: 'middle',
-						duration: 2000
-					});
-				} else {
-
-					this.login({
-						username: this.username,
-						password: this.password,
-						$router: this.$router,
-						$route: this.$route
-					});
-				}
-			},
-			test() {
-				webMMAPi.initState({
-					requestid: 'AllFreeFlag'
-				}).then((res) => {
-					console.log('login')
-					console.log(res)
-				})
-			}
-		}
-	};
+// @ is an alias to /src
+import webMMAPi from 'api/index';
+import {
+    mapActions
+} from 'vuex';
+import {
+    Toast
+} from 'mint-ui';
+export default {
+    name: 'login',
+    data() {
+        return {
+            username: '',
+            password: ''
+        };
+    },
+    components: {},
+    created() {},
+    mounted() {
+        this.test()
+    },
+    methods: {
+        ...mapActions('login', ['login']),
+        loginBtn() {
+            if (this.username === '' || this.password === '') {
+                Toast({
+                    message: '请输入账号或密码',
+                    position: 'middle',
+                    duration: 2000
+                });
+            } else {
+                this.login({
+                    username: this.username,
+                    password: this.password,
+                    $router: this.$router,
+                    $route: this.$route
+                });
+            }
+        },
+        test() {
+            webMMAPi.initState({
+                requestid: 'AllFreeFlag'
+            }).then((res) => {
+                console.log('login')
+                console.log(res)
+            })
+        }
+    }
+};
 </script>
 <style scoped lang="scss">
 	.login {

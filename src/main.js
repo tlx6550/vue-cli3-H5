@@ -4,6 +4,8 @@ import router from './router'
 import store from './store/index'
 import filters from './filters/index'
 import wechat from '@/common/wechat/index'
+import 'vue-ydui/dist/ydui.base.css';
+import './ydui/diy.js'
 Vue.use(wechat);
 // 注入全局过滤器
 Object.keys(filters).forEach(item => {

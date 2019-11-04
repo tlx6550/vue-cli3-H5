@@ -10,10 +10,10 @@ export default {
     mutations: {
 
         [type.LOGIN](state, data) {
-            let userDate = data.data;
-            state.token = userDate.token;
+            let userDate = data;
+            state.token = userDate.token || 'token';
             state.user = userDate;
-            localStorage.setItem('token', userDate.token)
+            localStorage.setItem('token', state.token)
             localStorage.setItem('userDate', JSON.stringify(userDate))
         }
 
@@ -22,8 +22,7 @@ export default {
         async login(state, data) {
             try {
                 let res = await webMMAPi.login({
-                    username: data.username,
-                    password: data.password
+                    username: data.mobile
                 })
                 state.commit(type.LOGIN, res);
                 Toast({
@@ -32,7 +31,7 @@ export default {
                     duration: 2000
                 });
                 setTimeout(() => {
-                    const redirect = data.$route.query.redirect || '/';
+                    const redirect = '/authentication'
                     data.$router.replace({
                         path: redirect
                     })
