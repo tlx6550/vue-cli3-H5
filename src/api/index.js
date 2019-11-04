@@ -35,7 +35,8 @@ export default class webMMAPi {
        const res = {
            code: 0,
            data: {
-               token: 'token'
+               token: 'token',
+               mobile: '134****6550'
            }
        }
        console.log(res)

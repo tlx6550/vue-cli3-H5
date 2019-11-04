@@ -1,3 +1,4 @@
+let YDRZ = null;
 (function(win, doc) {
     var opts = {
         getMobileUrl: {
@@ -157,7 +158,7 @@
             }
         }
     };
-
+    YDRZ = win.YDRZ
     function checkParms(opt) {
         var isflag = true;
         for (p in opt.data) {
@@ -394,3 +395,4 @@
         }
     }
 })(window, document);
+export default YDRZ

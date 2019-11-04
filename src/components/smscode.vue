@@ -100,14 +100,8 @@ export default {
             }
             this.$dialog.loading.open('登陆中...')
             setTimeout(() => {
-                this.start1 = true
+                this.start1 = false
                 this.$dialog.loading.close()
-
-                this.$dialog.toast({
-                    mes: '登陆成功',
-                    icon: 'success',
-                    timeout: 1500
-                })
                 const res = {
                     code: 0,
                     data: {

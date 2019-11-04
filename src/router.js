@@ -28,16 +28,6 @@ const router = new Router({
             }
         },
         {
-            path: '/login',
-            name: 'login',
-            component: () =>
-                import(/* webpackChunkName: "login" */ './views/login.vue'),
-            meta: {
-                auth: false,
-                keepAlive: false
-            }
-        },
-        {
             path: '*', // 未匹配到路由时重定向
             redirect: '/',
             meta: {

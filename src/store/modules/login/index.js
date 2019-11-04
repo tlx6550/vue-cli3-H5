@@ -5,7 +5,8 @@ export default {
     namespaced: true,
     state: {
         token: localStorage.getItem('token') || '',
-        user: JSON.parse(localStorage.getItem('userDate')) || {}
+        user: JSON.parse(localStorage.getItem('userDate')) || {},
+        mobile: ''
     },
     mutations: {
 
@@ -13,6 +14,7 @@ export default {
             let userDate = data;
             state.token = userDate.token || 'token';
             state.user = userDate;
+            state.mobile = userDate.data.mobile;
             localStorage.setItem('token', state.token)
             localStorage.setItem('userDate', JSON.stringify(userDate))
         }
