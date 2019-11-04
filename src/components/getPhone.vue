@@ -12,6 +12,7 @@
 <script>
 import YDRZ from '@/common/YDRZ.js'
 import webMMAPi from 'api/index'
+import { setTimeout } from 'timers';
 export default {
     name: 'getPhone',
     data() {
@@ -24,22 +25,24 @@ export default {
     created() {},
     mounted() {
         const that = this
-        this.getPhoneByToken()
-            .then(mobile => {
-                that.phone = mobile
-                that.$emit('getPhone', mobile)
-            })
-            .catch(function() {
-                that.$dialog.toast({
-                    mes: '取号失败',
-                    timeout: 1500,
-                    icon: 'error'
+        setTimeout(() => {
+            this.getPhoneByToken()
+                .then(mobile => {
+                    that.phone = mobile
+                    that.$emit('getPhone', mobile)
                 })
-                that.$emit('getPhone', false)
-            })
-            .finally(function() {
-                that.loading = false
-            })
+                .catch(function() {
+                    that.$dialog.toast({
+                        mes: '取号失败',
+                        timeout: 1500,
+                        icon: 'error'
+                    })
+                    that.$emit('getPhone', false)
+                })
+                .finally(function() {
+                    that.loading = false
+                })
+        }, 6000) // 6s网络异常测试 需手动关闭网络谷歌浏览器
     },
     methods: {
         async ydrzgetTokenParams() {
@@ -103,6 +106,9 @@ export default {
                             })
                         }
                     }
+                }).catch(() => {
+                    console.log('net error')
+                    reject(new Error('false'))
                 })
             })
         },
